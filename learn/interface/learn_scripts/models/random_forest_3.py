@@ -17,7 +17,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report
 from sklearn import metrics
 from sklearn import datasets
-from sklearn.tree import export_graphviz
+#from sklearn.tree import export_graphviz
 from sklearn.metrics import confusion_matrix
 import six
 from sklearn import tree
@@ -27,6 +27,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 import time
 import sys
+import json
 
 # #----------------------------------
 # if len(sys.argv) != 2:
@@ -36,6 +37,7 @@ import sys
 # #----------------------------------------
 
 #datafile="interface/learn_scripts/datasets/classifier_bfs.csv"
+
 def main(datafile): 
     target_names = ['good','bad']
 
@@ -161,4 +163,7 @@ def main(datafile):
     #new_test_set.to_csv('new_test.csv',na_rep='NA',index=False)
     new_test_set.to_csv('rf_trained.csv',na_rep='NA',index=False)
 
-    return "Running RandomForestClassifier for BFS"
+    global json_data
+    json_data={'m': m}
+    json_data=json.dumps(json_data)
+
