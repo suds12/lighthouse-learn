@@ -165,5 +165,5 @@ def main(datafile):
 
     global json_data
     json_data={'m': m}
-    json_data=json.dumps(json_data)
+    #json_data=json.dumps(json_data)
 
