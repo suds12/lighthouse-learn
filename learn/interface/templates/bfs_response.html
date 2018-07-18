@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    <head>
+        <title>BFS_sample</title>
+    </head>
+    <style>
+    	table, th, td {
+    	border: 1px solid black;
+}
+    </style>
+    <body>
+
+        <p>Behind the scenes, Random forest classifier was trained and was made to classify a test set which was then stored in a DB when this page was loaded. The following table is one ramdomly chosen instance along with it's classification from the DB.</p>
+        <table style="width:100%">
+		  <tr>
+		    <th>dataset</th>
+		    <th>package</th> 
+		    <th>nedges</th>
+		    <th>nvertices</th>
+		    <th>nthreads</th>
+		    <th>nodes_in_largest_wcc</th>
+		    <th>nodes_in_largest_scc</th>
+		    <th>edges_in_largest_wcc</th>
+		    <th>edges_in_largest_scc</th>
+		    <th>average_clustering_coefficient</th>
+		    <th>number_of_triangles</th>
+		    <th>fraction_of_closed_triangles</th>
+		    <th>diameter_longest_shortest_path_field</th>
+		    <th>x90_percentile_effective_diameter</th>
+		    <th>runtime</th>
+		    <th>classification</th>
+
+		  </tr>
+		  <tr>
+		    <td>{{ dataset }}</td>
+		    <td>{{ package }}</td> 
+		    <td>{{nedges}}</td>
+		    <td>{{nvertices}}</td>
+		    <td>{{nthreads}}</td>
+		    <td>{{nodes_in_largest_wcc}}</td>
+		    <td>{{nodes_in_largest_scc}}</td>
+		    <td>{{edges_in_largest_wcc}}</td>
+		    <td>{{edges_in_largest_scc}}</td>
+		    <td>{{average_clustering_coefficient}}</td>
+		    <td>{{number_of_triangles}}</td>
+		    <td>{{fraction_of_closed_triangles}}</td>
+		    <td>{{diameter_longest_shortest_path_field}}</td>
+		    <td>{{x90_percentile_effective_diameter}}</td>
+		    <td>{{ runtime }}</td>
+		    <td>{{ classification }}</td>
+		  </tr>
+		</table>
+
+
+    </body>
+</html>

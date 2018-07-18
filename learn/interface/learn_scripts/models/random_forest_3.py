@@ -26,6 +26,7 @@ from sklearn.metrics import recall_score
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 import time
+import sqlite3
 import sys
 import json
 
@@ -72,11 +73,12 @@ def main(datafile):
         else:
             row['classification']='bad'
             classification.append(row['classification'])
-    #--------------------------------
+    #----------------------------------------------------------------------Create db table
+    data['classif']=pandas.Series(classification)
+    cxn = sqlite3.connect('db.sqlite3')
+    data.to_sql('learning_set1', con=cxn, if_exists='replace')
 
     #print classification
-
-    data['classif']=pandas.Series(classification)
 
     data['package'] = data.package.astype('category')
     data['algorithm'] = data.algorithm.astype('category')
@@ -99,14 +101,9 @@ def main(datafile):
     classifier = classifier.fit(X_train, Y_train)
     #print(classifier)
     predictions = classifier.predict(X_test)
+
     #result = recall_score(Y_test, predictions, average = 'weighted')
     results = metrics.classification_report(Y_test, predictions, target_names)
-    #mat = metrics.confusion_matrix(Y_test,predictions)
-    #sklearn.metrics.accuracy_score(Y_test, predictions)
-    #print(results)
-    #print(result)
-    #print(mat)
-    #print((time.clock()))
 
     #---------------------------------- Analysis
 
@@ -157,13 +154,24 @@ def main(datafile):
 
     #new_test_set.dropna(axis=1, how='any', inplace=True)
     new_test_set=new_test_set.dropna()
-            
-
-
-    #new_test_set.to_csv('new_test.csv',na_rep='NA',index=False)
     new_test_set.to_csv('rf_trained.csv',na_rep='NA',index=False)
 
     global json_data
     json_data={'m': m}
     #json_data=json.dumps(json_data)
+
+    #-----------------------------------------------------------------data prep for django
+    
+
+    user_datapoint=X_test.iloc[16]  #random selection for now
+    dp_to_render=user_datapoint
+    #data.to_sql('learning_set', con=cxn, if_exists='replace')    #learning set
+    dp_to_render.to_sql('user_dp', con=cxn, if_exists='replace') #single point in learning set
+    
+    user_datapoint=user_datapoint.values
+    print(user_datapoint)
+    user_prediction=classifier.predict(user_datapoint.reshape(1, -1))
+    print(user_prediction)
+
+
 

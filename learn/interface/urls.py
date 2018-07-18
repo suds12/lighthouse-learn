@@ -3,5 +3,10 @@ from interface import views
 
 urlpatterns = [
     url(r'^$', views.HomePageView.as_view()),
-    url(r'^BFS/$', views.bfs),
+    url(r'^BFS/$', views.bfs_response),
+    url(r'^search-request/$', views.search_form),
+    url(r'^search/$', views.search),
+    url(r'^bfs-response/$', views.bfs_response),
+
+
 ]
