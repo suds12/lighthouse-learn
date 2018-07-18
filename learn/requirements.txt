@@ -1,5 +1,7 @@
 cycler==0.10.0
 Django==2.0.7
+django-tables2==1.21.2
+django-tables3==0.14.1
 kiwisolver==1.0.1
 matplotlib==2.2.2
 numpy==1.14.5
