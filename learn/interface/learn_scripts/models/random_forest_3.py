@@ -45,13 +45,13 @@ def main(datafile):
 
     #print(a)
     #Begin actual Code: 
-
     data = pandas.read_csv(datafile)
     data = data[data.runtime != 0]
 
 
     #--------------------classify dataset as good or bad
     classification=[]
+    teps=[]
     # m=data['runtime'].mean()
     # print m
     # for index, row in data.iterrows():
@@ -64,21 +64,32 @@ def main(datafile):
 
     #-------------------------------
     m = data['nedges'].divide(data['runtime']).mean()
-    #print(m)
+    #print m
     #print data['runtime']
     for index, row in data.iterrows():
-        if row['nedges']/row['runtime'] < m/1000:
+        if row['nedges']/row['runtime'] > m/100:
+            row['teps']=row['nedges']/row['runtime']
             row['classification']='good'
             classification.append(row['classification'])
+            teps.append(row['teps'])
         else:
+            row['teps']=row['nedges']/row['runtime']
             row['classification']='bad'
             classification.append(row['classification'])
-    #----------------------------------------------------------------------Create db table
+            teps.append(row['teps'])
+    #--------------------------------
+    print(np.std(teps))
+    data['teps']=pandas.Series(teps)
+    data['teps'].to_csv('teps.csv',na_rep='NA',index=False)
+    sd=data['teps'].std()
+    print(sd)
+    data=data.drop('teps', axis=1)
+    #print classification
+    #-----------------------------------------------------------django prep
     data['classif']=pandas.Series(classification)
     cxn = sqlite3.connect('db.sqlite3')
     data.to_sql('learning_set1', con=cxn, if_exists='replace')
-
-    #print classification
+    #----------------------------------------------------------------
 
     data['package'] = data.package.astype('category')
     data['algorithm'] = data.algorithm.astype('category')
@@ -96,14 +107,28 @@ def main(datafile):
     Y = data.iloc[:,a] # The solutions 
     #print(Y)
     X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size = 0.34)
-    #print((X_train.shape, X_test.shape, Y_train.shape, Y_test.shape))
+    print((X_train.shape, X_test.shape, Y_train.shape, Y_test.shape))
     classifier = RandomForestClassifier(n_estimators = 100)
     classifier = classifier.fit(X_train, Y_train)
     #print(classifier)
     predictions = classifier.predict(X_test)
-
     #result = recall_score(Y_test, predictions, average = 'weighted')
     results = metrics.classification_report(Y_test, predictions, target_names)
+    #mat = metrics.confusion_matrix(Y_test,predictions)
+    #sklearn.metrics.accuracy_score(Y_test, predictions)
+    print(results)
+    #print(result)
+    #print(mat)
+    print((time.clock()))
+
+    # ranking=classifier.predict_proba(X_test)
+    # print(classifier.predict(X_test))
+
+    # good_rank= ranking[:,1]
+    # rank_g=pandas.Series(good_rank)
+    # print rank_g
+    # X_test_df=pandas.DataFrame(X_test)
+    # X_test_df['proba']=rank_g
 
     #---------------------------------- Analysis
 
@@ -116,7 +141,7 @@ def main(datafile):
     x_lab = ['INFO', 'CUISINE', 'TYPE_OF_PLACE', 'DRINK', 'PLACE', 'MEAL_TIME', 'DISH', 'NEIGHBOURHOOD']
 
     # Print the feature ranking
-    #print("Confusion Matrix:")
+    print("Confusion Matrix:")
 
     #for f in range(X.shape[1]):
         #print("%d. feature %d (%f)" % (f + 1, indices[f], importances[indices[f]]))
@@ -139,36 +164,67 @@ def main(datafile):
 
     #cm.show()
 
-    #print(cm)
+    print(cm)
     #print Y_test
-    #print(predictions)
+    print(predictions)
 
     #prepare for lm---------------------
     #new_test_set = pandas.DataFrame(columns=['dataset','package','algorithm','nvertices','nedges','nthreads','Nodes.in.largest.WCC','Edges.in.largest.WCC','Nodes.in.largest.SCC','Edges.in.largest.WCC','Average.clustering.coefficient','Number.of.triangles','Fraction.of.closed.triangles','Diameter..longest.shortest.path.','X90.percentile.effective.diameter','classif'])
     new_test_set = pandas.DataFrame(index=data.columns.copy())
+    new_bad_set = pandas.DataFrame(index=data.columns.copy())
     for index, row in data.iterrows():
         if row['classif']== 'good':
             new_test_set=new_test_set.append(row)
+        if row['classif']== 'bad':
+            new_bad_set=new_bad_set.append(row) 
+
 
 
 
     #new_test_set.dropna(axis=1, how='any', inplace=True)
-    new_test_set=new_test_set.dropna()
-    new_test_set.to_csv('rf_trained.csv',na_rep='NA',index=False)
 
-    global json_data
-    json_data={'m': m}
-    #json_data=json.dumps(json_data)
+    new_test_set=new_test_set.dropna()
+    new_bad_set=new_bad_set.dropna()
+
+    #print new_bad_set['runtime'].min()
+
+    #print new_test_set['runtime'].min()
+            
+
+    overall_nr = data['nedges'].divide(data['runtime']).min()
+    print(overall_nr)
+
+    overall_nr = data['nedges'].divide(data['runtime']).max()
+    print(overall_nr)
+
+    overall_nr = data['nedges'].divide(data['runtime']).mean()
+    print(overall_nr)
+
+    good_nr = new_test_set['nedges'].divide(new_test_set['runtime']).mean()
+    print(good_nr)
+
+
+
+
+
+    #new_test_set.to_csv('new_test.csv',na_rep='NA',index=False)
+    # new_test_set.to_csv('rf_trained.csv',na_rep='NA',index=False)
+    # new_bad_set.to_csv('rf_bad.csv',na_rep='NA',index=False)
+
+    # new_test_set.to_csv('rf_good_runtime.csv',na_rep='NA',index=False)
+    # new_bad_set.to_csv('rf_bad_runtime.csv',na_rep='NA',index=False)
 
     #-----------------------------------------------------------------data prep for django
-    
-
+    print(X_test)
+    global json_data
+    json_data={'m':m}
     user_datapoint=X_test.iloc[16]  #random selection for now
     dp_to_render=user_datapoint
     #data.to_sql('learning_set', con=cxn, if_exists='replace')    #learning set
     dp_to_render.to_sql('user_dp', con=cxn, if_exists='replace') #single point in learning set
     
     user_datapoint=user_datapoint.values
+    print("user dp:")
     print(user_datapoint)
     user_prediction=classifier.predict(user_datapoint.reshape(1, -1))
     print(user_prediction)

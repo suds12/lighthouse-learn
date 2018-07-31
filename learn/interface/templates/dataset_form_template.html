@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>select</title>
+</head>
+<body>
+    <h1>Select Dataset</h1>
+
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="/custom-bfs/" method="GET" novalidate>
+        <!-- {% csrf_token %} -->
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+
+   <!--  <form action="/custom_bfs/" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Submit</button>
+    </form> -->
+
+    
+
+</body>
+</html>

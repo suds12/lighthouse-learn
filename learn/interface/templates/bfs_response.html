@@ -6,15 +6,16 @@
     <style>
     	table, th, td {
     	border: 1px solid black;
+    	word-wrap: break-word
 }
     </style>
     <body>
+        <p>You have chosen the graph: <h1> {{dataset}}</h1> and package : <h1>{{package}}</h1> </p>
 
-        <p>Behind the scenes, Random forest classifier was trained and was made to classify a test set which was then stored in a DB when this page was loaded. The following table is one ramdomly chosen instance along with it's classification from the DB.</p>
-        <table style="width:100%">
+        <p>The attributes for this graph are :</p>
+
+        <table style="table-layout: fixed; width:100%">
 		  <tr>
-		    <th>dataset</th>
-		    <th>package</th> 
 		    <th>nedges</th>
 		    <th>nvertices</th>
 		    <th>nthreads</th>
@@ -27,13 +28,10 @@
 		    <th>fraction_of_closed_triangles</th>
 		    <th>diameter_longest_shortest_path_field</th>
 		    <th>x90_percentile_effective_diameter</th>
-		    <th>runtime</th>
-		    <th>classification</th>
+		    
 
 		  </tr>
 		  <tr>
-		    <td>{{ dataset }}</td>
-		    <td>{{ package }}</td> 
 		    <td>{{nedges}}</td>
 		    <td>{{nvertices}}</td>
 		    <td>{{nthreads}}</td>
@@ -46,11 +44,16 @@
 		    <td>{{fraction_of_closed_triangles}}</td>
 		    <td>{{diameter_longest_shortest_path_field}}</td>
 		    <td>{{x90_percentile_effective_diameter}}</td>
-		    <td>{{ runtime }}</td>
-		    <td>{{ classification }}</td>
+		    
 		  </tr>
 		</table>
 
+		<p> The model suggests running BFS on {{dataset}} using {{package}} is :</p>
+		<h1>{{classification}}</h1>
+
+		<form action="/visualize/" > 
+        	<button type="submit">Visualize graph</button>
+    	</form> 
 
     </body>
 </html>
