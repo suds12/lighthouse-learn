@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Package Assistant</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<h2>Package Assistant</h2>
+		<div class="row">
+
+			<div class="col-md-6">
+				<div class="panel-group">
+					<div class="panel panel-primary">
+						<div class="panel-heading">Input</div>
+						<div class="panel-body">
+							<h1>Select Dataset</h1>
+
+							{% if form.errors %}
+							<p style="color: red;">
+								Please correct the error{{ form.errors|pluralize }} below.
+							</p>
+							{% endif %}
+
+							<form action='/condensed/' method="POST" novalidate>
+								{% csrf_token %}
+								<table>
+									{{ form.as_table }}
+									
+								</table>
+								<input type="submit" value="Submit">
+							</form>
+						</div>
+					</div>
+
+					<div class="panel panel-success">
+						<div class="panel-heading">Visualization</div>
+						<div class="panel-body">
+							{% load static %}
+
+							<img class="img-responsive" src="{% static 'interface/fig1.png'%}" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="panel-group">
+					<div class="panel panel-primary">
+						<div class="panel-heading">Package Performance</div>
+						<div class="panel-body">
+							<p>You have chosen the graph: <h1> {{dataset}}</h1> and package : <h1>{{package}}</h1> </p>
+
+							<p>The attributes for this graph are :</p>
+
+							<div class="table-responsive">
+								<table class="table table-striped">
+									<tr>
+										<th>nedges</th>
+										<th>nvertices</th>
+										<th>nthreads</th>
+										<th>nodes_in_largest_wcc</th>
+										<th>nodes_in_largest_scc</th>
+										<th>edges_in_largest_wcc</th>
+										<th>edges_in_largest_scc</th>
+										<th>average_clustering_coefficient</th>
+										<th>number_of_triangles</th>
+										<th>fraction_of_closed_triangles</th>
+										<th>diameter_longest_shortest_path_field</th>
+										<th>x90_percentile_effective_diameter</th>
+
+
+									</tr>
+									<tr>
+										<td>{{nedges}}</td>
+										<td>{{nvertices}}</td>
+										<td>{{nthreads}}</td>
+										<td>{{nodes_in_largest_wcc}}</td>
+										<td>{{nodes_in_largest_scc}}</td>
+										<td>{{edges_in_largest_wcc}}</td>
+										<td>{{edges_in_largest_scc}}</td>
+										<td>{{average_clustering_coefficient}}</td>
+										<td>{{number_of_triangles}}</td>
+										<td>{{fraction_of_closed_triangles}}</td>
+										<td>{{diameter_longest_shortest_path_field}}</td>
+										<td>{{x90_percentile_effective_diameter}}</td>
+
+									</tr>
+								</table>
+							</div>
+
+							<p> The model suggests running BFS on {{dataset}} using {{package}} is :</p>
+							<h1>{{classification}}</h1>
+
+
+
+						</div>
+					</div>
+
+					
+
+					<!-- <div class="panel panel-info">
+						<div class="panel-heading">Panel with panel-info class</div>
+						<div class="panel-body">Panel Content</div>
+					</div>
+
+					<div class="panel panel-warning">
+						<div class="panel-heading">Panel with panel-warning class</div>
+						<div class="panel-body">Panel Content</div>
+					</div>
+
+					<div class="panel panel-danger">
+						<div class="panel-heading">Panel with panel-danger class</div>
+						<div class="panel-body">Panel Content</div>
+					</div> -->
+				</div>
+			</div>
+			
+		</div>
+
+	</body>
+	</html>

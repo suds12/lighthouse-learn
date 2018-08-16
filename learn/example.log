@@ -1,25 +1,6 @@
-ERROR:django.request:Internal Server Error: /custom-bfs/
-Traceback (most recent call last):
-  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
-    response = get_response(request)
-  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
-    response = self.process_exception_by_middleware(e, request)
-  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/home/sud/research/summer/lighthouse-learn/learn/interface/views.py", line 60, in custom_bfs
-    selected=selected.strip("[]")			#preprocessing
-AttributeError: 'NoneType' object has no attribute 'strip'
-ERROR:django.request:Internal Server Error: /custom-bfs/
-Traceback (most recent call last):
-  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
-    response = get_response(request)
-  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
-    response = self.process_exception_by_middleware(e, request)
-  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/home/sud/research/summer/lighthouse-learn/learn/interface/views.py", line 60, in custom_bfs
-    selected=selected.strip("[]")			#preprocessing
-AttributeError: 'NoneType' object has no attribute 'strip'
-INFO:root:parsed-email-Enron-2.csv
-DEBUG:matplotlib.font_manager:findfont: Matching :family=sans-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('/home/sud/.local/lib/python2.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000
-INFO:root:parsed-facebook_combined-4.csv
+INFO:root:parsed-actor-collaboration-1.csv
+INFO:root:parsed-actor-collaboration-1.csv
+INFO:root:parsed-actor-collaboration-1.csv
+INFO:root:parsed-actor-collaboration-1.csv
+INFO:root:parsed-actor-collaboration-1.csv
+INFO:root:parsed-eat-4.csv

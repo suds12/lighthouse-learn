@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^select-dataset/$', views.dataset_form),
     url(r'^custom-bfs/$', views.custom_bfs),
     url(r'^visualize/$', views.visualize),
+    url(r'^condensed/$', views.condensed),
+
 ]

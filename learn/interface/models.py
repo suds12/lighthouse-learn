@@ -55,7 +55,15 @@ class LearningSet1(models.Model):
     runtime = models.FloatField(blank=True, null=True)
     classif = models.TextField(blank=True, null=True)
 
+
     class Meta:
         managed = False
         db_table = 'learning_set1'
 
+
+class Input(models.Model):
+	dataset=models.TextField()
+
+	class Meta:
+		managed = False
+		db_table = 'input-info'

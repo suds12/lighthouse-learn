@@ -6,6 +6,7 @@ from io import StringIO
 from interface.learn_scripts.models import random_forest_3
 from interface.models import LearningSet1
 from interface.forms import DatasetForm
+from interface.forms import SelectForm
 import json
 import matplotlib.pyplot as plt
 import numpy as np
@@ -60,18 +61,7 @@ def custom_bfs(request):
 	selected=selected.strip("[]")			#preprocessing
 	selected=selected.strip("''")
 	logging.info(selected)
-
-
-
-	# if form.is_valid():
-	# 	message = form.cleaned_data['post']
-	# 	logging.info('ans is %s',message)
-	# 	#print(message)
-	# else:
-	# 	print("bns")
-
-	# args={'form': form, 'message': message}
-	# return render(request, 'dataset_form_template.html', args)
+	
 	global dp
 	dp = LearningSet1.objects.get(dataset=selected, package='GraphMat')
 	#ax = plt.subplot(111)
@@ -89,6 +79,31 @@ def visualize(request):
 	#plt.show()
 	image_data = open("fig1.png", "rb").read()
 	return HttpResponse(image_data, content_type="image/png")
+
+def condensed(request):
+	if request.method == 'POST':
+		form=SelectForm(request.POST)
+		selected_dataset=request.POST.get("dataset", "")
+		selected_dataset=selected_dataset.strip("()")			#preprocessing
+		selected_dataset=selected_dataset.strip("',")
+		logging.info(selected_dataset)
+
+		global dp
+		dp = LearningSet1.objects.get(dataset=selected_dataset, package='GraphMat')
+		return render(request, 'condensed.html', 
+			{'dataset': dp.dataset, 'package': dp.package, 'runtime':dp.runtime, 'classification':dp.classif, 'nedges':dp.nedges, 'nvertices':dp.nvertices, 'nthreads':dp.nthreads, 'nodes_in_largest_wcc':dp.nodes_in_largest_wcc, 'nodes_in_largest_scc':dp.nodes_in_largest_scc, 'edges_in_largest_wcc':dp.edges_in_largest_wcc, 'edges_in_largest_scc':dp.edges_in_largest_scc,'average_clustering_coefficient':dp.average_clustering_coefficient, 'number_of_triangles':dp.number_of_triangles, 'fraction_of_closed_triangles':dp.fraction_of_closed_triangles, 'diameter_longest_shortest_path_field':dp.diameter_longest_shortest_path_field, 'x90_percentile_effective_diameter':dp.x90_percentile_effective_diameter})
+
+		# if form.is_valid():
+		# 	temp = form.cleaned_data
+		# 	selected_dataset=temp.get("dataset","")
+			
+		# else:
+		# 	logging.info("invalid")
+	else:
+		form=SelectForm()
+		
+	return render(request, 'condensed.html', {'form':form})
+
 
 		
 		
