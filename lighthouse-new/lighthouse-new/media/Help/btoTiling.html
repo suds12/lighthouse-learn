@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+    </head>
+    <body>
+        <p>
+            You may specify start:stop:step sizes for thread or cache tiling.
+            If only level1 is specified, it can be either thread or cache (examples below).
+            If both level1 and level2 are specified, level1 (outer level) should be given as thread
+            and level2 should be given as cache (inner) tiling.
+
+            Examples:
+            <pre>thread 2:12:1</pre> tests 2 to 12 threads with step size 1.
+
+            Start and stop sizes refer to number of elements to attempt to fit into cache. For example,
+            <pre>cache 64:512:8</pre> tests 64 up to 512 elements, increasing by 8
+            elements each trial.
+        </p>
+    </body>
+</html>
+

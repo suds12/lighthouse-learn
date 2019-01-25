@@ -1,0 +1,322 @@
+<!-- ########### Simple search form: ###########-->
+{% block guidedSearch %}
+
+<div id="title-div">
+	<table id="icon-table">
+		<tr>
+			<td id="icon-cell">
+				<img src="{{ MEDIA_URL }}Images/guidedSearch.png" width="32" height="32"/>
+			</td>		
+			<td id="title-cell">
+				PETSc Guided Search
+			</td>
+		</tr>
+	</table>	
+</div>
+
+{% if message %}
+
+<div id="question-div-petsc">
+	<table id="question">
+	<tr>
+		<td>			
+	        <img src="{{ MEDIA_URL }}Images/arrow.png" width="8" height="8"/>
+			<b>{{ message }}</b>
+		</td>
+	</tr>
+	</table>
+</div>
+<div id="button-div">
+    <table style="width:100%; margin: 0px auto;">
+	<tr style="width:100%;">
+		<td style="text-align:left;">				
+			<button type="button" name="reset" id="resetbutton" title="Reset" onmouseover="showTooltip('tooltip', 'Reset','#cc0000');" onmouseout="showTooltip('tooltip','');" onclick="window.location = '/petsc/';">
+			    <!-- <img src="{{ MEDIA_URL }}Images/clear.png" width="16" height="16"/> -->
+			    Reset
+			</button>						
+		</td>
+		<td style="text-align:center;">
+				<div id="tooltip"></div>
+		</td>
+		<td style="text-align:right;">			
+			<button id="download_button" {% if error == "yes" %}disabled="disabled"{% endif %} onmouseover="showTooltip('tooltip', 'Download', '#009900');" onmouseout="showTooltip('tooltip','');" onclick=""; >
+				<!--  <img src="{{ MEDIA_URL }}Images/dialog-ok-4.png" width="16" height="16"/> -->
+				Download
+			</button >			
+        </td>
+	</tr>
+	</table>
+</div>
+
+{% else %}
+
+<div id="questions">
+
+<div id="question-div-petsc">
+	<table id="question">
+	<tr>
+		<td>			
+	        <img src="{{ MEDIA_URL }}Images/arrow.png" width="8" height="8"/>
+			<b>Which of the following operations do you wish to perform?</b>
+		</td>
+	</tr>
+	</table>
+
+	<table id="option">
+	<tr>				
+		<td>
+			<img src="{{ MEDIA_URL }}Images/dialog-ok-4.png" width="8" height="8"/>	
+			Solve a system of linear equations
+		</td>			
+	</tr>
+	</table>
+	<br>
+</div>
+
+<!-- ########### Linear system questions and options ###########-->
+
+<form id="main_op"  action="/petsc/linear_system/generateCode/" name="main_op" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	{% for field in form %}
+	<div id="question-div-petsc" {% if field.label != "Would you like to upload your matrix?" %}style="display:none;" {% endif %} name="{{field.name}}_div" >
+		<table id="question">
+
+		<tr>
+			<td>			
+		        <img src="{{ MEDIA_URL }}Images/arrow.png" width="8" height="8"/>
+				<b>{{ field.label }}</b>			
+			</td>
+			<td>
+				<img src="{{ MEDIA_URL }}Images/question.png" width="16" height="16"/>
+			</td>
+		</tr>
+
+		</table>
+
+		{% for option in field %}
+		<table id="option">
+		
+		<tr>				
+			<td>				
+				{{ option }}
+			</td>				
+		</tr>
+		</table>
+		{% endfor %}
+		<br>	
+		
+	</div>	
+	{% endfor %}
+	<button type="button" id="sub_button" class="myButton" disabled="disabled" onmouseover="showTooltip('tooltip', 'Submit', '#009900');" onmouseout="showTooltip('tooltip','');" onclick="return myFunction();"; >
+	<!--  <img src="{{ MEDIA_URL }}Images/dialog-ok-4.png" width="16" height="16"/> -->
+	Submit
+	</button >
+
+	<div id="button-div" style="margin-bottom: 10px; display:none;" name="sub_message">
+		<table style="width:100%; padding: 5px 0px 5px 5px;">
+			<tr style="width:100%;">
+				<td style="text-align:left; font-weight:bold;">
+					Please submit the form now.
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="button-div">
+	    <table style="width:100%; margin: 0px auto;">
+		<tr style="width:100%;">
+			<td style="text-align:left;">				
+				<button type="button" name="reset" id="resetButton" class="myButton" title="Cancel" onmouseover="showTooltip('tooltip', 'Cancel','#cc0000');" onmouseout="showTooltip('tooltip','');" onclick="return show_confirm()">
+			    <!-- <img src="{{ MEDIA_URL }}Images/clear.png" width="16" height="16"/> -->
+			    Reset
+				</button>				
+			</td>			
+			<td style="text-align:center;">
+				<div id="tooltip"></div>
+			</td>
+			
+			<td style="text-align:right;">
+				
+
+			</td>			
+		</tr>
+    	</table>
+	</div>
+</form>
+
+</div>
+{% endif %}
+{% endblock %}
+
+
+<script type="text/javascript">
+        /* Loading themeTester */
+        //var loadingEl = dojo.byId("loaderInner");
+        //loadingEl.innerHTML += "<br />* Menu widgets - dijit.Menu";
+        
+        selectedRoutineNames = [];
+        
+        
+
+        /* Ask for confirmation when user clicks on Restart Search button */
+        function show_confirm(){
+                var restart = "";
+                restart = confirm("Are you sure you start over the search?");
+                if(restart)
+                        window.location = "/petsc/";    
+        }
+
+        // Functions for faster tooltips for submit and clear buttons
+        function showTooltip(id, text, color){          
+                document.getElementById(id).innerHTML=text;
+                document.getElementById(id).style.color=color;
+        }
+
+        function checkAnswers(){
+                
+        		console.log("Hello world!");
+                var answered_all = true;
+
+                /*if(document.getElementById('output_format_0').checked)
+                {
+                	alert("LLLLLLLLLL");
+                    answered_all = true;
+                }
+                if(document.getElementById('output_format_1').checked)
+                        answered_all = true;
+*/
+                if(answered_all)
+                {
+                    return true;   
+                    alert("LLLLLLLLLL");
+
+                }
+                else
+                        alert("Please answer all the questions and then try again.");           
+
+                return false;
+        }
+        function myFunction() {
+        	document.getElementById("main_op").submit();
+        }
+
+        function checkOperation(){
+                if(document.getElementById('main_op_0').checked)
+                        return true;
+                if(document.getElementById('main_op_1').checked)
+                        return true;
+
+                alert("Select an operation.");
+                return false;
+        }
+
+        function upload_mat_changed(){
+                var x;
+
+                if(document.getElementById('upload_matrix_0').checked) {                  
+                  x = document.getElementsByName('matrix_file_div');
+                  x[0].style.display = "block";
+                  x = document.getElementsByName('alt_choices_div');
+                  x[0].style.display = "none";
+          reset_radio_buttons('alt_choices');
+
+                }else if(document.getElementById('upload_matrix_1').checked) {  
+                  x = document.getElementsByName('matrix_file_div');
+                  x[0].style.display = "none";
+                  x = document.getElementsByName('alt_choices_div');
+                  x[0].style.display = "block";
+                }
+
+                x = document.getElementById('sub_button');
+                x.disabled = true;
+
+                x = document.getElementsByName('sub_message');
+                x[0].style.display = "none";
+
+                x = document.getElementsByName('solution_type_div');
+                x[0].style.display = "none";
+
+                x = document.getElementsByName('matrix_prop_file_div');
+                x[0].style.display = "none";
+                
+                reset_radio_buttons('solution_type');
+                if (document.getElementById("matrix_file").value != "" && document.getElementById('upload_matrix_0').checked){
+                        var x = document.getElementsByName('solution_type_div');
+                        x[0].style.display = "block";
+                }
+                
+        }
+        
+        function solution_type_changed(){                               
+                var x = document.getElementById('sub_button');
+                x.disabled = false;
+
+                x = document.getElementsByName('sub_message');
+                x[0].style.display = "block";
+        }
+
+        function file_changed(){
+                if (document.getElementById("matrix_file").value == ""){
+                        alert("no file selected");
+                }else{
+                        var x = document.getElementsByName('solution_type_div');
+                        x[0].style.display = "block";
+                }
+        }
+
+        function prop_file_changed(){
+                if (document.getElementById("matrix_prop_file").value == ""){
+                        alert("no file selected");
+                }else{
+                        var x = document.getElementsByName('solution_type_div');
+                        x[0].style.display = "block";
+                }
+        }       
+
+        function alt_choices_changed(){
+                if(document.getElementById('alt_choices_2').checked){             
+                        x = document.getElementsByName('matrix_prop_file_div');
+                        x[0].style.display = "block";
+                        x = document.getElementsByName('solution_type_div');
+                        x[0].style.display = "none";
+                        x = document.getElementById('sub_button');
+                        x.disabled = true;
+                        x = document.getElementsByName('sub_message');
+                        x[0].style.display = "none";
+                }
+                if(document.getElementById('alt_choices_1').checked){             
+                        x = document.getElementsByName('matrix_prop_file_div');
+                        x[0].style.display = "none";
+                        x = document.getElementsByName('solution_type_div');
+                        x[0].style.display = "none";
+                        x = document.getElementById('sub_button');
+                        x.disabled = false;
+                        x = document.getElementsByName('sub_message');
+                        x[0].style.display = "block";
+                }
+                if(document.getElementById('alt_choices_0').checked){             
+                        x = document.getElementsByName('matrix_prop_file_div');
+                        x[0].style.display = "none";
+                        x = document.getElementsByName('solution_type_div');
+                        x[0].style.display = "none";
+                        x = document.getElementById('sub_button');
+                        x.disabled = false;
+                        x = document.getElementsByName('sub_message');
+                        x[0].style.display = "block";
+                }
+
+                
+                reset_radio_buttons('solution_type');
+                if (document.getElementById("matrix_prop_file").value != "" && document.getElementById('alt_choices_2').checked){
+                        var x = document.getElementsByName('solution_type_div');
+                        x[0].style.display = "block";
+                }
+        }
+
+        function reset_radio_buttons(name){
+                var x = document.getElementsByName(name);
+                for(i = 0; i < x.length; i++)
+                        x[i].checked = false;
+        }
+
+</script>

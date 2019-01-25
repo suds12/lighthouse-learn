@@ -1,0 +1,53 @@
+<html>
+     <head>
+        <script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+    </head>
+    <body>
+        <p>
+            The condition number of a system of linear equations <span lang="latex">Ax=b</span> measures the stability
+            to numerical operations. A system of equations is considered to be well-conditioned/ill-conditioned if a
+            slight perturbation in the coefficient matrix <span lang="latex">A</span> or in the vector <span lang="latex">b</span>
+            results in a small/great change in the solution vector <span lang="latex">x</span>.
+        </p>
+        <p>
+            In mathematical terms, if <span lang="latex">x + \delta x</span> is the solution to a perturbed problem, then
+            <pre>
+                <span lang="latex">(A + \delta A)(x + \delta x) = b + \delta b</span>,
+            </pre>
+            and
+            <pre>
+                <span lang="latex">\frac{ \parallel \delta x \parallel}{ \parallel x \parallel}
+                \leq
+                \kappa(A)
+                \left(\frac{ \parallel \delta A \parallel}{ \parallel A \parallel} +
+                \frac{ \parallel \delta b \parallel}{ \parallel b \parallel} \right) + ...
+                </span>
+            </pre>           
+            <span lang="latex">\kappa(A)</span> is the condition number of a square matrix <span lang="latex">A</span>,
+            which is defined as:
+            <pre>
+                <span lang="latex">\kappa(A) = \parallel A \parallel \parallel A^{-1} \parallel</span>,
+            </pre>
+            where <span lang="latex">\parallel A \parallel</span> is the norm of matrix <span lang="latex">A</span>.
+        </p>
+       <p>
+            Condition numbers near one indicate well-conditioned matrices, whereas 
+            condition numbers much greater than one imply ill-conditioned matrices.
+        </p>
+        <p>
+            The condition estimation routines in LAPACK compute the reciprocal condition number, which is defined as:
+            <pre>
+                <span lang="latex">RCOND = 1/\kappa(A)</span>.
+            </pre>
+            Computing <span lang="latex">\parallel A \parallel</span> directly can be expensive. Therefore, it is estimated
+            by methods of low cost. <i>RCOND</i> is zero or a minimal number on the order of the machine epsilon (or machine precision)
+            if <span lang="latex">A^{-1}</span> does not exist (i.e., <span lang="latex">A</span> is singular).
+        </p>
+        <p>
+            Condition number, or its reciprocal <i>RCOND</i>, is an indicator one can examine before computing the solution
+            to a system of linear equations.
+        </p>
+ 
+        
+    </body>
+</html>
