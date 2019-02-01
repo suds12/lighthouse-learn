@@ -1,0 +1,183 @@
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/dialog-ok-4.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/question.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/dialog-ok-4.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/question.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/edit-find-10.png
+ERROR:django.request:Internal Server Error: /petsc/linear_system/
+Traceback (most recent call last):
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/template/base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/template/base.py", line 910, in render_annotated
+    return self.render(context)
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/template/loader_tags.py", line 182, in render
+    template = context.template.engine.get_template(template_name)
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/template/engine.py", line 130, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: linear_systems.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/sud/research/redundant/lighthouse-new/lighthouse-new/PETSc/views.py", line 40, in linear_system
+    return render(request,'base_linear_system.html', {'form':form})
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/template/backends/django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "/home/sud/.virtualenvs/learn/lib/python3.6/site-packages/django/template/backends/django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: linear_systems.html
+WARNING:django.request:Not Found: /petsc/linear_system/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/dialog-ok-4.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/question.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/question.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/dialog-ok-4.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/new_styles.css
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/new_styles.css
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/new_styles.css
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/new_styles.css
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/question.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/dialog-ok-4.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/dialog-ok-4.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/question.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/question.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/dialog-ok-4.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/dialog-ok-4.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/question.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/edit-find-10.png
+WARNING:django.request:Not Found: /petsc/linear_system/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/linear_system/generateCode/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/guidedSearch.png
+WARNING:django.request:Not Found: /petsc/Images/arrow.png
+WARNING:django.request:Not Found: /petsc/Images/edit-find-10.png

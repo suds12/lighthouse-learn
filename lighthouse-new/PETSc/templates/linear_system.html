@@ -1,6 +1,5 @@
 <!-- ########### Simple search form: ###########-->
 {% block guidedSearch %}
-
 <div id="title-div">
 	<table id="icon-table">
 		<tr>
@@ -39,7 +38,7 @@
 				<div id="tooltip"></div>
 		</td>
 		<td style="text-align:right;">			
-			<button id="download_button" {% if error == "yes" %}disabled="disabled"{% endif %} onmouseover="showTooltip('tooltip', 'Download', '#009900');" onmouseout="showTooltip('tooltip','');" onclick=""; >
+			<button id="download_button" {% if error == "yes" %}disabled="disabled"{% endif %} onmouseover="showTooltip('tooltip', 'Download', '#009900');" onmouseout="showTooltip('tooltip','');" onclick="save()"; >
 				<!--  <img src="{{ MEDIA_URL }}Images/dialog-ok-4.png" width="16" height="16"/> -->
 				Download
 			</button >			
@@ -107,10 +106,7 @@
 		
 	</div>	
 	{% endfor %}
-	<button type="button" id="sub_button" class="myButton" disabled="disabled" onmouseover="showTooltip('tooltip', 'Submit', '#009900');" onmouseout="showTooltip('tooltip','');" onclick="return myFunction();"; >
-	<!--  <img src="{{ MEDIA_URL }}Images/dialog-ok-4.png" width="16" height="16"/> -->
-	Submit
-	</button >
+	
 
 	<div id="button-div" style="margin-bottom: 10px; display:none;" name="sub_message">
 		<table style="width:100%; padding: 5px 0px 5px 5px;">
@@ -136,6 +132,10 @@
 			</td>
 			
 			<td style="text-align:right;">
+				<button type="button" id="sub_button" class="myButton" disabled="disabled" onmouseover="showTooltip('tooltip', 'Submit', '#009900');" onmouseout="showTooltip('tooltip','');" onclick="return myFunction();"; >
+				<!--  <img src="{{ MEDIA_URL }}Images/dialog-ok-4.png" width="16" height="16"/> -->
+					Submit
+				</button >
 				
 
 			</td>			
@@ -318,5 +318,15 @@
                 for(i = 0; i < x.length; i++)
                         x[i].checked = false;
         }
+        function save() 
+	    { 
+	    	var msg = document.getElementById("code");
+/*		    window.alert("I am here 1");
+		    var jsonBlob = new Blob([JSON.stringify({message})], { type: 'application/javascript;charset=utf-8' });
+		    window.alert("I am here 2");
+		   	var link=window.URL.createObjectURL(jsonBlob);
+		    window.location=link;*/
+		    window.alert(msg);
+	    } 
 
 </script>

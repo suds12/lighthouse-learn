@@ -37,7 +37,7 @@ def linear_system(request):
 		  		'message': "Sorry, Lighthouse cannot generate PETSc code for eigenvalue problems yet.",
 		  	}
 
-		return render(request,'linear_system.html', {'form':form})
+		return render(request,'base_linear_system.html', {'form':form})
 		
 
 def petsc_code(request):
@@ -80,7 +80,7 @@ def petsc_code(request):
 		# 	'lighthouse/petsc_le/linear_system.html', 
 		# 	context_instance=RequestContext(request, context)
 		# )
-		return render(request,'linear_system.html', {'form':form,'error':error,'message':message})
+		return render(request,'base_generate_code.html', {'form':form,'error':error,'message':message,'code':code,'makefile':makefile,'command':command})
 
 def generateCode(request):
 
@@ -112,7 +112,6 @@ def generateCode(request):
 			zf.write( base_path + "readme.txt")
 			zf.write( base_path + "command_line_options.txt")
 			zf.close()	
-			print('hii')
 			return True
 		elif alt_option == "3":
 			matrix_prop_file = request.FILES['matrix_prop_file']
@@ -153,33 +152,28 @@ def getCode():
 
 	filepath = './PETSc/templateGen/petsc_le/work_dir/linear_solver.c'
 	code = ""
-	
-	# if os.path.isfile(filepath):
-	#    	with open(filepath, 'r') as f:
-	# 		code = f.read()
-	
+	if os.path.isfile(filepath):
+		with open(filepath, 'r') as f:
+			code = f.read()
+
 	return code
 
 def getMakefile():
 
 	filepath = './PETSc/templateGen/petsc_le/work_dir/makefile'
 	makefile = ""
-	
-	# if os.path.isfile(filepath):
-	#    	with open(filepath, 'r') as f:
-	# 		makefile = f.read()		
-	
+	if os.path.isfile(filepath):
+		with open(filepath, 'r') as f:
+			makefile = f.read()	
 	return makefile
 
 def getCommands():
 
 	filepath = './PETSc/templateGen/petsc_le/work_dir/command_line_options.txt'
 	commands = ""
-	
-	# if os.path.isfile(filepath):
-	#    	with open(filepath, 'r') as f:
-	# 		commands = f.read()
-				
+	if os.path.isfile(filepath):
+		with open(filepath, 'r') as f:
+			commands = f.read()			
 	return commands
 
 def handle_uploaded_file(f):
