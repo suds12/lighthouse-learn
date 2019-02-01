@@ -9,3 +9,10 @@ To run:
       -make install
       
       -make run
+
+# lighthouse-PETSc
+
+      -cd lighthouse-new/lighthouse-new
+      -pip3 install -r requirements.txt
+      -python3 manage.py runserver
+      -Go to http://localhost:8000/petsc/ on the browser
