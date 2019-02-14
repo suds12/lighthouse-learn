@@ -25,7 +25,7 @@ SECRET_KEY = 'o=02vhmgu+x*0zgm8$2tit%i7_g#+i(pmochgy5*7vwp$%-48-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 CORS_ORIGIN_ALLOW_ALL = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sansa.cs.uoregon.edu']
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
