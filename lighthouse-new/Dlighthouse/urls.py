@@ -5,4 +5,5 @@ from django.conf.urls import url, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^petsc/', include('PETSc.urls')),
+    url(r'^rank/', include('rank.urls'))
 ]
