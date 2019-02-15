@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+	.header {
+	  padding: 10px;
+	  text-align: left;
+	  background: #D3D3D3;
+	  color: black;
+	  font-size: 30px;
+	}
+	.container-fluid{
+		overflow:hidden;
+                background-color: #f7fafe; 
+                border-style: solid; 
+                border-width: 3px; 
+                border-color: #e0ecfb;                                
+                text-align: center; 
+                text-align: middle; 
+                font-family: "Tahoma", "Geneva", "sans-serif";
+                font-size: 17px; 
+                color: #003366;
+	}
+</style>
+
+<div class="header">
+  <h1>Header</h1>
+  <p>My supercool header</p>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel-group">
+				<!-- ########### Simple search tab: ###########-->
+				<div class="panel panel-primary">
+					<div class="panel-heading">Guided Search</div>
+					<div class="panel-body">
+						<div id="guided-search">	
+						{% include 'rank_input.html'%}
+						</div>
+					</div>
+				</div>
+				<!-- ########### Instructions tab ###########-->
+				<div class="panel panel-primary">
+					<div class="panel-heading">Makefile</div>
+					<div class="panel-body">
+						<div id="instructions">	
+							
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-primary">
+					<div class="panel-heading">Command-line Options</div>
+					<div class="panel-body">
+						<div id="guided-search">	
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<div class="panel-group">
+				<!-- ########### Simple search tab: ###########-->
+				<div class="panel panel-primary">
+					<div class="panel-heading">Instructions</div>
+					<div class="panel-body">
+						<div id="guided-search">	
+							{% include "instructions.html" %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+
+	</div>	
+</div>
+

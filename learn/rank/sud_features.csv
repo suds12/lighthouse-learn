@@ -1,0 +1,2 @@
+Matrix Name, Comm Size , Edge, Interior ,Dimension,npoints,nnz,Trace,AbsoluteTrace,DiagonalMean,FrobeniusNorn,OneNorm,ColumnDiagonalDominance,SymmeticInfinityNorm
+/home/users/ssriniv2/zenios.petsc,1,10,1,2873,2873,1306.27,0,0,0,9.3126,5.38446,0,5.38446

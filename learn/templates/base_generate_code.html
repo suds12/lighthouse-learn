@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel-group">
+				<!-- ########### Simple search tab: ###########-->
+				<div class="panel panel-primary">
+					<div class="panel-heading">Guided Search</div>
+					<div class="panel-body">
+						<div id="guided-search">	
+							{% include "linear_system.html" %}
+						</div>
+					</div>
+				</div>
+				<!-- ########### Instructions tab ###########-->
+				<div class="panel panel-primary">
+					<div class="panel-heading">Makefile</div>
+					<div class="panel-body">
+						<div style="margin: 0px auto; font-family: monospace; white-space: pre; font-size: 12px; overflow: auto; padding-bottom: 10px;">
+								<code>{{makefile}}</code>
+						</div>	
+					</div>
+				</div>
+
+				<div class="panel panel-primary">
+					<div class="panel-heading">Command-line Options</div>
+					<div class="panel-body">
+						<div id="guided-search">	
+							<div style="margin: 0px auto; font-family: monospace; white-space: pre; font-size: 12px; overflow: auto; padding-bottom: 10px;">
+								<code>{{command}}</code>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<div class="panel-group">
+				<!-- ########### Simple search tab: ###########-->
+				<div class="panel panel-primary">
+					<div class="panel-heading">PETSc code</div>
+					<div class="panel-body">
+						<div id="guided-search">	
+							<div style="margin: 0px auto; height: 500px; font-family: monospace; white-space: pre; font-size: 12px; overflow: scroll; padding-bottom: 10px;">
+								<code>{{code}}</code>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+
+	</div>	
+</div>
